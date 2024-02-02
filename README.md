@@ -57,8 +57,18 @@ This is a simple PHP router class that can be used to define routes for web appl
         Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
     });
     ```
+6. **Prefix Routing**
+    ```php
+    Route::prefix('/admin/auth')->group(function (){
+        Route::get('/?', 'Auth@index')->name('auth');
+        Route::get('/login', 'Auth@login')->name('auth/login');
+        Route::get('/logout','Auth@logout')->name('auth/logout');
+        //Route::get('/auth',function(){return 'This page is Authentification page';})->name('auth');
+        Route::redirect('/auth/signin','/auth/login');
+    });
+    ```
 
-6. **Read More**
+7. **Read More**
 
     For more details and advanced usage, please refer to the documentation in the `docs` directory.
 
