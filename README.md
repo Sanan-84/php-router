@@ -9,7 +9,7 @@ This is a simple PHP router class that can be used to define routes for web appl
     First, you need to include the `Route.php` file in your project. You can do this by copying the content of the `Route.php` file into your project or by using Composer.
 
     ```bash
-    composer require your-vendor/your-project
+    composer require Sanan-84/php-router
     ```
 
 2. **Basic Usage**
