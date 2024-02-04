@@ -1,19 +1,20 @@
 {
     "name": "sanan-84/php-router",
     "description": "Simple PHP Router Example",
-    "require": {
-        "php": ">=7.4"
-    },
     "license": "MIT",
     "authors": [
         {
             "name": "Sanan Mammadov",
-            "email": "sanna@webservis.az"
+            "email": "sanan@webservis.az",
+            "homepage": "http://www.webservis.az"
         }
     ],
+    "require": {
+        "php": ">=7.4"
+    },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "Webservis\\": "src/"
         }
     }
 }
