@@ -1,7 +1,7 @@
 {
     "name": "sanan-84/php-router",
     "description": "Simple PHP Router Example",
-    "license": "MIT",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Sanan Mammadov",
