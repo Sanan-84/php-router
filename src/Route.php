@@ -1,8 +1,8 @@
 <?php
 
-namespace Core;
+namespace Webservis;
 
-use Core\Helpers\Redirect;
+use Webservis\Redirect;
 
 class Route
 {
