@@ -6,21 +6,21 @@ use Webservis\Redirect;
 
 class Route
 {
-    public static array $patterns = [':id[0-9]?' => '([0-9]+)', ':url[0-9]?' => '([0-9a-zA-Z-_+]+)', ':slug[0-9]?' => '([0-9a-zA-Z-_]+)'];
+    public static array $patterns = [':id[0-9]*' => '([0-9]+)', ':url[0-9]*' => '([0-9a-zA-Z-_+]+)', ':slug[0-9]*' => '([0-9a-zA-Z-_]+)'];
     public static bool $hasRoute = false;
     public static array $routes = [];
     public static string $prefix = '';
     public static string $subdomain = '';
 
-    public static function get(string $path, $callback): Route
+    public static function get(string $path, $callback, $subdomain = null): Route
     {
-        self::$routes['get'][self::$prefix . $path] = ['callback' => $callback, 'subdomain' => self::$subdomain];
+        self::$routes['get'][self::$prefix . $path] = ['callback' => $callback, 'subdomain' => $subdomain];
         return new self();
     }
 
-    public static function post(string $path, $callback): void
+    public static function post(string $path, $callback, $subdomain = null): void
     {
-        self::$routes['post'][$path] = ['callback' => $callback, 'subdomain' => self::$subdomain];
+        self::$routes['post'][$path] = ['callback' => $callback, 'subdomain' => $subdomain];
     }
 
     public static function dispatch()
@@ -30,7 +30,8 @@ class Route
         $currentSubdomain = self::getSubdomain();
 
         foreach (self::$routes[$method] as $path => $props) {
-            if ($props['subdomain'] != $currentSubdomain) {
+            // Subdomain kontrolü eklenmiş ve düzenlenmiştir
+            if ($props['subdomain'] !== null && $props['subdomain'] != $currentSubdomain) {
                 continue;
             }
 
@@ -133,6 +134,8 @@ class Route
         $hostParts = explode('.', $_SERVER['HTTP_HOST']);
         if (count($hostParts) >= 3) {
             return implode('.', array_slice($hostParts, 0, -2));
-        } else {return '';}
+        } else {
+            return '';
+        }
     }
 }
